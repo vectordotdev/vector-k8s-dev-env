@@ -21,7 +21,7 @@ spec:
 
     grafana:
       persistence:
-        enabled: false
+        enabled: true
 
       grafana.ini:
         analytics:
