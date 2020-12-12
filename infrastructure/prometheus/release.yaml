@@ -23,6 +23,14 @@ spec:
       persistence:
         enabled: true
 
+      sidecar:
+        datasources:
+          enabled: true
+          searchNamespace: ALL
+        notifiers:
+          enabled: true
+          searchNamespace: ALL
+
       grafana.ini:
         analytics:
           check_for_updates: false
