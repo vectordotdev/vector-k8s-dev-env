@@ -6,10 +6,11 @@ spec:
   releaseName: vector
   chart:
     spec:
-      chart: vector-agent
+      chart: vector
+      version: ">0.0.0-0" # same as "latest" version with the `--devel` flag
       sourceRef:
         kind: HelmRepository
-        name: timberio
+        name: timberio-nightly
         namespace: flux-system
   interval: 1h0m0s
   install:
@@ -23,10 +24,11 @@ spec:
           RUST_BACKTRACE: "1"
           RUST_LOG: debug
 
-    sinks:
-      stdout:
-        type: console
-        inputs: ["kubernetes_logs"]
-        rawConfig: |
-          target = "stdout"
-          encoding.codec = "json"
+    vector-aggregator:
+      sinks:
+        stdout:
+          type: console
+          inputs: ["vector"]
+          rawConfig: |
+            target = "stdout"
+            encoding.codec = "json"
