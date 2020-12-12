@@ -2,3 +2,4 @@ namespace: prometheus
 resources:
   - namespace.yaml
   - release.yaml
+  - storageclass.yaml
