@@ -1,0 +1,4 @@
+namespace: vector
+resources:
+  - namespace.yaml
+  - release.yaml
