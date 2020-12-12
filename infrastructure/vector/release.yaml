@@ -24,7 +24,18 @@ spec:
           RUST_BACKTRACE: "1"
           RUST_LOG: debug
 
+    vector-agent:
+
+      prometheusSink:
+        podMonitor:
+          enabled: true
+
     vector-aggregator:
+
+      prometheusSink:
+        podMonitor:
+          enabled: true
+
       sinks:
         stdout:
           type: console
