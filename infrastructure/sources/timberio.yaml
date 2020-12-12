@@ -1,0 +1,16 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmRepository
+metadata:
+  name: timberio
+spec:
+  interval: 30m0s
+  url: https://packages.timber.io/helm/latest
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmRepository
+metadata:
+  name: timberio-nightly
+spec:
+  interval: 30m0s
+  url: https://packages.timber.io/helm/nightly
