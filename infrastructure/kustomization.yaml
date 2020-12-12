@@ -1,3 +1,4 @@
 resources:
   - sources
   - vector
+  - prometheus

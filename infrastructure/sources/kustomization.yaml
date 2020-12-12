@@ -1,3 +1,6 @@
 namespace: flux-system
 resources:
   - timberio.yaml
+  - prometheus.yaml
+  - stable.yaml
+  - grafana.yaml

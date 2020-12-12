@@ -1,0 +1,38 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: prometheus
+spec:
+  releaseName: prometheus
+  chart:
+    spec:
+      chart: kube-prometheus-stack
+      sourceRef:
+        kind: HelmRepository
+        name: prometheus-community
+        namespace: flux-system
+  interval: 1h0m0s
+  values:
+
+    prometheus:
+      prometheusSpec:
+        podMonitorSelectorNilUsesHelmValues: false
+        serviceMonitorSelectorNilUsesHelmValues: false
+
+    grafana:
+      persistence:
+        enabled: false
+
+      grafana.ini:
+        analytics:
+          check_for_updates: false
+        auth.anonymous:
+          enabled: true
+          org_name: Main Org.
+          org_role: Editor
+        auth.basic:
+          enabled: false
+        auth:
+          disable_login_form: true
+          oauth_auto_login: false
+          disable_signout_menu: true
