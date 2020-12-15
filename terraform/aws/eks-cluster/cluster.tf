@@ -12,4 +12,8 @@ resource "eksctl_cluster" "primary" {
         instanceType: ${var.instance_type}
         desiredCapacity: ${var.nodes_count}
   EOS
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
