@@ -27,3 +27,9 @@ variable "nodes_count" {
   default     = 3
   description = "The desired number of instances in the AWS EKS cluster node group"
 }
+
+variable "eksctl_version" {
+  type        = string
+  default     = ""
+  description = "The eksctl version to use, if empty the system version is used"
+}

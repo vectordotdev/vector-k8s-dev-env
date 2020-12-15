@@ -1,5 +1,5 @@
 resource "eksctl_cluster" "primary" {
-  eksctl_version = "0.34.0"
+  eksctl_version = var.eksctl_version
   name           = var.name
   region         = var.region
   version        = "1.18"
