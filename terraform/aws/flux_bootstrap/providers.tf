@@ -1,1 +1,1 @@
-provider "shell" {}
+provider "kustomization" {}

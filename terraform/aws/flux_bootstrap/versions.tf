@@ -1,8 +1,8 @@
 terraform {
   required_providers {
-    shell = {
-      source  = "scottwinkler/shell"
-      version = "1.7.7"
+    kustomization = {
+      source  = "kbst/kustomization"
+      version = "0.3.0"
     }
   }
 }
