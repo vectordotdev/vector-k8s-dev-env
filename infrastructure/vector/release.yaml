@@ -43,3 +43,8 @@ spec:
           rawConfig: |
             target = "stdout"
             encoding.codec = "json"
+        es:
+          type: elasticsearch
+          inputs: ["vector"]
+          rawConfig: |
+            endpoint = "https://search-k8s-dev-env-ttpx3l2swpuxzk5cfsrv34snly.us-west-2.es.amazonaws.com"
