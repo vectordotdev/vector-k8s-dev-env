@@ -4,9 +4,9 @@ locals {
 
 resource "shell_script" "flux_bootstrap" {
   lifecycle_commands {
-    create = "kubectl apply -k ${local.kustomization_path}"
-    read   = "kubectl get -k ${local.kustomization_path} -o jsonpath='{\"{\"}\"state\":[{range .items[*]}\"{.apiVersion}|{.kind}|{.metadata.name}\"{\",\"}{end}\"\"]{\"}\"}'"
-    update = "kubectl apply -k ${local.kustomization_path}"
-    delete = "kubectl delete -k ${local.kustomization_path}"
+    create = "${path.module}/scripts/apply.sh \"${local.kustomization_path}\""
+    read   = "${path.module}/scripts/read.sh \"${local.kustomization_path}\""
+    update = "${path.module}/scripts/apply.sh \"${local.kustomization_path}\""
+    delete = "${path.module}/scripts/delete.sh \"${local.kustomization_path}\""
   }
 }
