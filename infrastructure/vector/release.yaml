@@ -48,3 +48,6 @@ spec:
           inputs: ["vector"]
           rawConfig: |
             endpoint = "https://search-k8s-dev-env-ttpx3l2swpuxzk5cfsrv34snly.us-west-2.es.amazonaws.com"
+            auth.assume_role = "arn:aws:iam::071959437513:role/k8s-dev-env-es-access"
+            auth.strategy = "aws"
+
