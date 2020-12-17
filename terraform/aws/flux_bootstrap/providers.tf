@@ -1,1 +1,2 @@
 provider "kustomization" {}
+provider "kubectl" {}

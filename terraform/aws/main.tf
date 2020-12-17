@@ -1,5 +1,4 @@
 provider "eksctl" {}
-provider "shell" {}
 provider "aws" {
   region = var.region
 }
@@ -35,18 +34,15 @@ data "aws_eks_cluster_auth" "primary" {
   ]
 }
 
-data "template_file" "kubeconfig" {
-  template = file("${path.module}/kubeconfig.yaml.tpl")
-  vars = {
-    endpoint               = data.aws_eks_cluster.primary.endpoint
-    cluster_ca_certificate = data.aws_eks_cluster.primary.certificate_authority[0].data
-    token                  = data.aws_eks_cluster_auth.primary.token
-  }
-}
+# We do not initialize it properly, because we only make use it to evaluate
+# the kustomization, not to apply it's manifests.
+provider "kustomization" {}
 
-provider "kustomization" {
-  kubeconfig_raw = data.template_file.kubeconfig.rendered
-  context        = "k8s-dev-env"
+provider "kubectl" {
+  host                   = data.aws_eks_cluster.primary.endpoint
+  cluster_ca_certificate = base64decode(data.aws_eks_cluster.primary.certificate_authority[0].data)
+  token                  = data.aws_eks_cluster_auth.primary.token
+  load_config_file       = false
 }
 
 module "flux_bootstrap" {
@@ -54,6 +50,7 @@ module "flux_bootstrap" {
 
   providers = {
     kustomization = kustomization
+    kubectl       = kubectl
   }
 
   depends_on = [
