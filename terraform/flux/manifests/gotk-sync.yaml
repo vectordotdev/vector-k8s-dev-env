@@ -6,11 +6,11 @@ metadata:
   namespace: flux-system
 spec:
   gitImplementation: go-git
-  interval: 1m0s
+  interval: ${git_interval}
   ref:
-    branch: master
-  timeout: 20s
-  url: https://github.com/timberio/vector-k8s-dev-env.git
+    ${git_ref_kind}: ${git_ref_value}
+  timeout: ${git_timeout}
+  url: ${git_repo}
 
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
@@ -19,8 +19,8 @@ metadata:
   name: flux-system
   namespace: flux-system
 spec:
-  interval: 10m0s
-  path: ./cluster
+  interval: ${kustomization_interval}
+  path: ${kustomization_path}
   prune: true
   sourceRef:
     kind: GitRepository
