@@ -45,8 +45,13 @@ provider "kubectl" {
   load_config_file       = false
 }
 
-module "flux_bootstrap" {
-  source = "./flux_bootstrap"
+module "flux" {
+  source = "../flux"
+
+  git_repo           = var.flux_git_repo
+  git_ref_kind       = var.flux_git_ref_kind
+  git_ref_value      = var.flux_git_ref_value
+  kustomization_path = "./cluster/aws"
 
   providers = {
     kustomization = kustomization

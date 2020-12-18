@@ -1,0 +1,28 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: GitRepository
+metadata:
+  name: flux-system
+  namespace: flux-system
+spec:
+  gitImplementation: go-git
+  interval: ${git_interval}
+  ref:
+    ${git_ref_kind}: ${git_ref_value}
+  timeout: ${git_timeout}
+  url: ${git_repo}
+
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: flux-system
+  namespace: flux-system
+spec:
+  interval: ${kustomization_interval}
+  path: ${kustomization_path}
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+

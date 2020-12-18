@@ -33,3 +33,18 @@ variable "eks_cluster_eksctl_version" {
   default     = ""
   description = "The eksctl version to use, if empty the system version is used"
 }
+
+variable "flux_git_repo" {
+  type        = string
+  description = "Git repo to use in the flux-system GitRepository"
+}
+
+variable "flux_git_ref_kind" {
+  type        = string
+  description = "Git ref kind to use in the flux-system GitRepository, can be \"branch\", \"tag\", \"commit\" or \"semver\""
+}
+
+variable "flux_git_ref_value" {
+  type        = string
+  description = "Git ref value to use in the flux-system GitRepository"
+}
