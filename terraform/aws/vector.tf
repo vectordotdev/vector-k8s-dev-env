@@ -29,9 +29,12 @@ resource "kubectl_manifest" "vector_injected_configmap" {
           serviceAccount:
             annotations:
               eks.amazonaws.com/role-arn: arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/${module.vector_service_account_role.this_iam_role_name}
+
+      elasticsearch_endpoint: "https://${module.es.endpoint}"
   YAML
 
   depends_on = [
-    module.flux
+    module.flux,
+    module.es,
   ]
 }
