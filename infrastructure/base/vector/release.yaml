@@ -49,3 +49,4 @@ spec:
           inputs: ["vector"]
           rawConfig: |
             endpoint = "${ELASTICSEARCH_ENDPOINT}"
+            auth.strategy = "${ELASTICSEARCH_AUTH_STRATEGY}"
