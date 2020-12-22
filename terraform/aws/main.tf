@@ -64,3 +64,22 @@ module "flux" {
     module.eks_cluster,
   ]
 }
+
+module "es" {
+  source = "./es"
+
+  providers = {
+    aws = aws
+  }
+
+  domain_name = var.eks_cluster_name
+  access_policies = [{
+    effect        = "Allow"
+    actions       = ["es:*"]
+    aws_role_arns = [module.vector_service_account_role.this_iam_role_arn]
+  }]
+
+  depends_on = [
+    module.vector_service_account_role
+  ]
+}

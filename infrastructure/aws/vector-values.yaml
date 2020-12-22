@@ -10,3 +10,20 @@ spec:
       name: terraform-injected-values
       valuesKey: helm-chart-values.yaml
 
+  values:
+
+    vector-aggregator:
+
+      env:
+        - name: ELASTICSEARCH_ENDPOINT
+          valueFrom:
+            configMapKeyRef:
+              name: terraform-injected-values
+              key: elasticsearch_endpoint
+        - name: ELASTICSEARCH_AUTH_STRATEGY
+          value: aws
+
+      extraVolumes:
+        - name: terraform-injected-values
+          configMap:
+            name: terraform-injected-values

@@ -36,9 +36,17 @@ spec:
           enabled: true
 
       sinks:
+
         stdout:
           type: console
           inputs: ["vector"]
           rawConfig: |
             target = "stdout"
             encoding.codec = "json"
+
+        elasticsearch:
+          type: elasticsearch
+          inputs: ["vector"]
+          rawConfig: |
+            endpoint = "${ELASTICSEARCH_ENDPOINT}"
+            auth.strategy = "${ELASTICSEARCH_AUTH_STRATEGY}"
