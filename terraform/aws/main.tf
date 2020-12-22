@@ -64,3 +64,13 @@ module "flux" {
     module.eks_cluster,
   ]
 }
+
+module "es" {
+  source = "./es"
+
+  providers = {
+    aws = aws
+  }
+
+  domain_name = var.eks_cluster_name
+}
