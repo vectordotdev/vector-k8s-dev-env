@@ -22,7 +22,6 @@ spec:
       vector:
         commonEnvKV:
           RUST_BACKTRACE: "1"
-          RUST_LOG: debug
 
     vector-agent:
 
