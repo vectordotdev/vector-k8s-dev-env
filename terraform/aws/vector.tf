@@ -3,11 +3,11 @@ module "vector_service_account_role" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-assumable-role-with-oidc"
   version = "3.6.0"
 
-  create_role                   = true
-  role_name                     = "${var.eks_cluster_name}-sa-vector"
-  provider_url                  = replace(data.aws_eks_cluster.primary.identity.0.oidc.0.issuer, "https://", "")
-  role_policy_arns              = []
-  oidc_fully_qualified_subjects = ["system:serviceaccount:vector:*"]
+  create_role                  = true
+  role_name                    = "${var.eks_cluster_name}-sa-vector"
+  provider_url                 = data.aws_eks_cluster.primary.identity.0.oidc.0.issuer
+  role_policy_arns             = []
+  oidc_subjects_with_wildcards = ["system:serviceaccount:vector:*"]
 
   providers = {
     aws = aws
