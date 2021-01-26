@@ -6,6 +6,7 @@ resource "eksctl_cluster" "primary" {
   spec           = <<-EOS
     iam:
       withOIDC: true
+      serviceAccounts: [] # managed by terraform
 
     managedNodeGroups:
       - name: ${var.node_group_name}
