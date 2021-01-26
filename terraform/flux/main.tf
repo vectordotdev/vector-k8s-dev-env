@@ -9,6 +9,10 @@ data "kustomization_build" "flux_system" {
 resource "kubectl_manifest" "flux_system" {
   for_each  = data.kustomization_build.flux_system.ids
   yaml_body = data.kustomization_build.flux_system.manifests[each.value]
+
+  depends_on = [
+    data.kustomization_build.flux_system
+  ]
 }
 
 data "kubectl_path_documents" "flux_sync" {
